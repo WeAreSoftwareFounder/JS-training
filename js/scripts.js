@@ -1,3 +1,1 @@
-let favoriteFood = "lasunga";
-alert("helllo world");
-document.write(favoriteFood);
+let pokemonwList = ['Bulbasasur', '8m','grass'];
