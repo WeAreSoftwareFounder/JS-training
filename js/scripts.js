@@ -1,4 +1,7 @@
-let pokemonList = ['Bulbasasur', '8m tall','grass type'];
-for (pokemonList <= 100; pokemonList++;) {
-    console.log(pokemonList);
-  }
+let pokemonList = {
+
+  name: "bulbasor",
+  height: "0.7m",
+  type: "grass",
+
+}
