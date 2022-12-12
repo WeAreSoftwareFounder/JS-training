@@ -6,5 +6,5 @@ let pokemonList = {
 
 }
 for (let i = 1; i <= 100; i++) {
-  console.log(pokemonList);
+  document.write(pokemonList.name, pokemonList.height, pokemonList.type);
 }
