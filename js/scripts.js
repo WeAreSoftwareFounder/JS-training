@@ -1,10 +1,15 @@
-let pokemonList = {
+let pokemonList = [
 
-  name: "bulbasor",
+  {name: "bulbasor",
   height: "0.7m",
-  type: "grass",
+  type: "grass"},
+  
+  {name: "Charmander",
+  height: "0.7m",
+  type: "grass"},
 
-}
-for (let i = 1; i <= 100; i++) {
-  document.write(pokemonList.name, pokemonList.height, pokemonList.type);
-}
+  {name: "bulbasor",
+  height: "0.7m",
+  type: "grass"},
+
+]
