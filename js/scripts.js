@@ -33,17 +33,21 @@ return {
 
   add : add,
   getAll: getAll,
+  addlistitem: addlistitem,
 
 };
 
 })();
-  // Searches array for objects and prints to documment
-  function Search(){
+  // Searches array for objects and creates list to documment
+  pokemonRepository.getAll().forEach(function(pokemon) {
 
-    pokemonRepository.add({name: 'Pikachu', height: 0.3, types: "Electric" });
-    pokemonRepository.getAll().forEach(Element => document.writeln('<p>' + Element.name + ' ', Element.height + ' ', Element.types + ' ', '</p>'))
+    let pokemon_list = document.querySelector('.pokemon-list');
+    let listitem = document.createElement('li');
+    let button = document.createElement('button');
+    button.innerText = pokemon.name;
+    button.classList.add('button-class');
+    listitem.appendChild(button);
+    pokemon_list.appendChild(listitem);
 
-  }
 
-// print object array to document loop
-pokemonRepository.getAll().forEach(Element => document.writeln(Search()));
+  });
