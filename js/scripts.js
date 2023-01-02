@@ -1,7 +1,6 @@
-// Creates pokemoneRepositry IFFE
-let  pokemonRepository= (function(){
+let  pokemoneRepositroy =  (function(){
 
-  let pokemonList =  [
+  let pokemonList = [
 
     {name: "Bulbasor", height: 0.7, types: "grass" },
   
@@ -9,45 +8,59 @@ let  pokemonRepository= (function(){
 
     {name: "Squirtle", height: 1, types: "water" },
 
-]
+  ]
 
-// add pokemon to pokemoneRepositroy IIFE
-return {
-
-  add: function(pokemone){
-
-    pokemonList.push(pokemone);
-
-  },
-
-  //return all values of pokemonRepositry IIFE
-  getAll: function(){
+  function getAll(){
 
     return pokemonList;
 
-  },
+  }
 
-}
+  function add(pokemon){
 
-return {
+    pokemonList.push(pokemon);
 
-  add : add,
-  getAll: getAll,
-  addlistitem: addlistitem,
+  }
 
-};
+  function addlistitem(pokemon){
+
+    let pokemonList = document.querySelector('.pokemon-list');
+    let listPokemon = document.createElement('li');
+    let button = document.createElement('button');
+    button.classList.add("button-class");
+    listPokemon.appendChild(button);
+    pokemonList.appendChild(listPokemon);
+
+    button.addEventListener('click', function display(){
+
+      pokemoneRepositroy.showDetails(pokemon);
+      button.innerText = pokemon.name;
+
+    })
+
+  };
+
+  function showDetails(pokemon){
+
+    console.log(pokemon);
+
+  };
+  
+  return {
+
+    getAll:  getAll,
+    add: add,
+    addlistitem: addlistitem,
+    showDetails: showDetails
+
+  };
 
 })();
-  // Searches array for objects and creates list to documment
-  pokemonRepository.getAll().forEach(function(pokemon) {
 
-    let pokemon_list = document.querySelector('.pokemon-list');
-    let listitem = document.createElement('li');
-    let button = document.createElement('button');
-    button.innerText = pokemon.name;
-    button.classList.add('button-class');
-    listitem.appendChild(button);
-    pokemon_list.appendChild(listitem);
+pokemoneRepositroy.getAll().forEach(function(pokemon){
 
+  document.writeln(pokemoneRepositroy.addlistitem(pokemon));
+  
+  
 
-  });
+})
