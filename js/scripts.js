@@ -34,7 +34,7 @@ let  pokemoneRepositroy =  (function(){
     button.addEventListener('click', function display(){
 
       pokemoneRepositroy.showDetails(pokemon);
-      button.innerText = pokemon.name;
+    
 
     })
 
@@ -59,8 +59,8 @@ let  pokemoneRepositroy =  (function(){
 
 pokemoneRepositroy.getAll().forEach(function(pokemon){
 
-  document.writeln(pokemoneRepositroy.addlistitem(pokemon));
-  
+  pokemoneRepositroy.addlistitem(pokemon);
+
   
 
 })
