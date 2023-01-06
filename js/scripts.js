@@ -9,19 +9,19 @@ let  pokemoneRepositroy =  (function(){
     {name: "Squirtle", height: 1, types: "water" },
 
   ]
-
+  //retuns pokelist array
   function getAll(){
 
     return pokemonList;
 
   }
-
+  //pushed new pokemon to array
   function add(pokemon){
 
     pokemonList.push(pokemon);
 
   }
-
+  // created and implemnts buttons for onlclick function to run showDetails function
   function addlistitem(pokemon){
 
     let pokemonList = document.querySelector('.pokemon-list');
@@ -39,10 +39,10 @@ let  pokemoneRepositroy =  (function(){
     })
 
   };
-
+  //prints pokemonlist array to console when called
   function showDetails(pokemon){
 
-    console.log(pokemon);
+    console.log(pokemon.name);
 
   };
   
