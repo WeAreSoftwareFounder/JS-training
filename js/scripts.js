@@ -27,7 +27,8 @@ function addListItem(pokemon){
 
   button.addEventListener('click', function display(){
 
-  showModal(pokemon.name, pokemon.height);
+  showModal(pokemon.name, pokemon.imageUrl);
+  showDetails(pokemon);
   console.log(pokemon);
 
   });
@@ -52,24 +53,22 @@ function addListItem(pokemon){
   }
 }
 
-function loadDetails(item) {
+  async function loadDetails(item) {
   let url = item.showDetailsUrl;
-  return fetch(url).then(function (response) {
-    return response.json();
-  }).then(function (details) {
+  try {
+    const response = await fetch(url);
+    const details = await response.json();
     // Now we add the details to the item
     item.imageUrl = details.sprites.front_default;
     item.height = details.height;
     item.types = details.types;
-  }).catch(function (e) {
+  } catch (e) {
     console.error(e);
-  });
+  }
 }
 
 function showDetails(pokemon) {
-  loadDetails(pokemon).then(function () {
-    console.log(pokemon);
-  });
+  loadDetails(pokemon);
 }
 
 //prints pokemonlist array to console when called
