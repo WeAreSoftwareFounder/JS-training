@@ -1,6 +1,6 @@
 let  pokemoneRepositroy =  (function(){
-
-let pokemonList = []
+  let url = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
+  let pokemonList = []
 //retuns pokelist array
 function getAll(){
 
@@ -27,7 +27,8 @@ function addListItem(pokemon){
 
   button.addEventListener('click', function display(){
 
-  showDetails();
+  showModal(pokemon.name, pokemon.height);
+  console.log(pokemon);
 
   });
 
@@ -36,7 +37,7 @@ function addListItem(pokemon){
   async function loadList(){
 
   try {
-    const response = await fetch('https://pokeapi.co/api/v2/pokemon/');
+    const response = await fetch(url);
     const json = await response.json();
     json.results.forEach(function (item) {
 
@@ -44,35 +45,34 @@ function addListItem(pokemon){
         name: item.name,
         showDetailsUrl: item.url,
       };
-      add(pokemon);
-      
+      add(pokemon);  
     });
   } catch (e) {
     console.log(e);
   }
 }
 
-  async function loadDetails(pokemon){
+function loadDetails(item) {
+  let url = item.showDetailsUrl;
+  return fetch(url).then(function (response) {
+    return response.json();
+  }).then(function (details) {
+    // Now we add the details to the item
+    item.imageUrl = details.sprites.front_default;
+    item.height = details.height;
+    item.types = details.types;
+  }).catch(function (e) {
+    console.error(e);
+  });
+}
 
-  let url = 'https://pokeapi.co/api/v2/pokemon/';
-  try {
-    const response = await fetch(url);
-    const details = await response.json();
-    pokemon.imageUrl = details.sprites.front_default;
-    pokemon.height = details.height;
-    pokemon.types = details.types;
-  } catch (e) {
-    console.log(e);
-  }
-
+function showDetails(pokemon) {
+  loadDetails(pokemon).then(function () {
+    console.log(pokemon);
+  });
 }
 
 //prints pokemonlist array to console when called
-function showDetails(pokemon){
-
-  showModal(pokemon.name, pokemon.height);
-
-}
 
 function showModal(title, text) {
   let modalContainer = document.querySelector('#modal-container');
@@ -105,10 +105,7 @@ function showModal(title, text) {
   modalContainer.classList.add('is-visible');
 }
 
-document.querySelector('#show-modal').addEventListener('click', () => {
-  showModal(title, text); //find name issue
-  showDetails(pokemon);
-});
+
 function hideModal() {
   let modalContainer = document.querySelector('#modal-container');
   modalContainer.classList.remove('is-visible');
@@ -130,11 +127,10 @@ return {
 
   getAll:  getAll,
   add: add,
-  addListItem: addListItem,
   showDetails: showDetails,
+  addListItem: addListItem,
   loadList: loadList,
   loadDetails: loadDetails,
-  showDetails: showDetails,
   showModal: showModal,
   hideModal: hideModal
 
@@ -148,10 +144,6 @@ pokemoneRepositroy.getAll().forEach(function(pokemon){
 
   pokemoneRepositroy.addListItem(pokemon);
   
-  
-
-
 })
 
-
-})
+});
