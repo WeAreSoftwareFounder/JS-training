@@ -27,7 +27,7 @@ function addListItem(pokemon){
 
   button.addEventListener('click', function display(){
 
-  showModal(pokemon.name, pokemon.imageUrl);
+  showModal('Name: ' + pokemon.name, 'Height: ' + pokemon.height, 'Image: ' + pokemon.imageUrl);
   showDetails(pokemon);
   console.log(pokemon);
 
@@ -73,7 +73,7 @@ function showDetails(pokemon) {
 
 //prints pokemonlist array to console when called
 
-function showModal(title, text) {
+function showModal(title, text, img) {
   let modalContainer = document.querySelector('#modal-container');
 
   // Clear all existing modal content
@@ -91,12 +91,16 @@ function showModal(title, text) {
   let titleElement = document.createElement('h1');
   titleElement.innerText = title;
 
-  let contentElement = document.createElement('p');
+  let contentElement = document.createElement('h2');
   contentElement.innerText = text;
+
+  let imageElement = document.createElement('img');
+  imageElement.innerHTML = img;
 
   modal.appendChild(closeButtonElement);
   modal.appendChild(titleElement);
   modal.appendChild(contentElement);
+  modal.appendChild(imageElement);
   modalContainer.appendChild(modal);
 
 
@@ -142,6 +146,7 @@ pokemoneRepositroy.loadList().then(function(){
 pokemoneRepositroy.getAll().forEach(function(pokemon){
 
   pokemoneRepositroy.addListItem(pokemon);
+  pokemoneRepositroy.showDetails(pokemon);
   
 })
 
