@@ -1,7 +1,9 @@
+/* eslint-disable space-before-function-paren */
 const pokemoneRepositroy = (function () {
   const url = 'https://pokeapi.co/api/v2/pokemon/?limit=150'
   const pokemonList = []
   // retuns pokelist array
+  // eslint-disable-next-line space-before-function-paren
   function getAll() {
     return pokemonList
   }
@@ -23,6 +25,7 @@ const pokemoneRepositroy = (function () {
     button.addEventListener('click', function () {
       document.querySelector('.modal-title').innerText = pokemon.name
       document.querySelector('.modal-body').innerText = 'Height: ' + pokemon.height + 'm'
+      document.querySelector('img').src = pokemon.imageUrl
     })
   };
 
